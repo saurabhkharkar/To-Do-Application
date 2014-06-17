@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app>
+    <head >
+        <title>todo list</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+	<!--Angular JS-->	
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"> </script>
+  
+			<script src="todojs.js" type="text/javascript">
+  </script>
+    
+  <!--bootstrap-->
+  
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="todocss.css" type="text/css">
+        
+    </head>
+    <body ng-controller="TodoCtrl">
+        <div class='container'>
+    <h3 class="list-group-item title" ><span class=heading>To-Do List</span></h3>
+    
+    <!--Counts the number of tasks and displays-->
+    
+    <h2 class="list-group-item a">You've got <span class="emphasis">{{getTotal()}}</span> things to do</h2>
+ <div ng-repeat="todo in todos" class=list-group-item>
+   <input  type="checkbox"  ng-model="todo.done"/>
+   <input type="text" ng-model="todo.text" class='border'/>
+   <input type="date" ng-model="todo.text1" class='border'/>
+   
+     <!--up arrow, down arrow and delete option-->
+   
+   <a href="" ng-click="move($index,'up')"><span class="glyphicon glyphicon-arrow-up"></span></a>
+   <a href="" ng-click="move($index,'down')"><span class="glyphicon glyphicon-arrow-down"></span></a>
+   
+   <a href="" ng-click="removeTodo($index)"> <span class="glyphicon glyphicon-remove-circle"></span> </a>
+   
+  </div>
+     <!--preview placeholder-->
+     
+     <div class='list-group-item' ng-show='todoText'>
+       <input type='checkbox' disabled='true'>
+       <input type='text' disabled='true' class='border' placeholder='{{todoText}}'>
+     </div>
+     
+    <!--add new todo-->
+  
+     <form ng-submit="addTodo()" class=list-group-item final>
+    <input type="text" ng-model="todoText" placeholder="task to be done"/>
+
+    <input type="submit" value="Add" class="btn btn-success"/>
+    
+  </form>
+    
+   </div>
+    </body>
+</html>
